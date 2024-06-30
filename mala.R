@@ -1,3 +1,5 @@
+source("animate_mcmc.R")
+
 pi_dist <- function(x, y) {
   exp(-((x-1)^2 + (y-x^2)^2))
 }
@@ -64,3 +66,4 @@ sigma <- 0.5
 samples <- random_walk_metropolis_hastings(n, start_x, start_y, sigma)
 
 plot(samples$x, samples$y, pch = 20, col = rgb(0, 0, 0, 0.1), main = "Metropolis-Adjusted Langevin Algorithm", xlab = "x", ylab = "y")
+animate_mcmc(samples, "Random Walk Metropolis-Hastings Samples")
