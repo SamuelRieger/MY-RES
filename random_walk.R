@@ -41,3 +41,4 @@ sigma <- 0.5
 samples <- random_walk_metropolis_hastings(n, start_x, start_y, sigma)
 
 plot(samples$x, samples$y, pch = 20, col = rgb(0, 0, 0, 0.1), main = "Random Walk Metropolis-Hastings Samples", xlab = "x", ylab = "y")
+animate_mcmc(samples, "Random Walk Metropolis-Hastings Samples")
