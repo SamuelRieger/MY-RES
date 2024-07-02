@@ -18,8 +18,7 @@ random_walk_metropolis_hastings <- function(n, start_x, start_y, sigma) {
   y_samples[1] <- start_y
   
   for (i in 2:n) {
-    # Propose new values from a normal distribution centered at the current values
-    # Transition kernel is a normal distribution centered at the previous value with a standard deviation of sigma
+    # Propose new values
     x_current <- x_samples[i-1]
     y_current <- y_samples[i-1]
     
@@ -37,11 +36,11 @@ random_walk_metropolis_hastings <- function(n, start_x, start_y, sigma) {
     grad_log_dy_proposed <- pi_grad_log_dy(x_proposed, y_proposed)
     
     log_g_current_given_proposed <- sum(dnorm(c(x_current, y_current),
-                                              mean = c(x_proposed, y_proposed) +0.5 * sigma^2 * c(grad_log_dx_proposed, grad_log_dy_proposed),
-                                              sd = sigma, log = TRUE))
+      mean = c(x_proposed, y_proposed) +0.5 * sigma^2 * c(grad_log_dx_proposed, grad_log_dy_proposed),
+      sd = sigma, log = TRUE))
     log_g_proposed_given_current <- sum(dnorm(c(x_proposed, y_proposed),
-                                              mean = c(x_current, y_current) + 0.5 * sigma^2 * c(grad_log_dx, grad_log_dy),
-                                              sd = sigma, log = TRUE))
+      mean = c(x_current, y_current) + 0.5 * sigma^2 * c(grad_log_dx, grad_log_dy),
+      sd = sigma, log = TRUE))
     
     acceptance_ratio <- exp(log(pi_proposed) - log(pi_current) + log_g_current_given_proposed - log_g_proposed_given_current)
     

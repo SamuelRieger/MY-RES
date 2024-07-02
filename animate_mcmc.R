@@ -41,8 +41,8 @@ animate_mcmc <- function(samples, title) {
     # shadow_mark(alpha = 0.1, size = 1.5, colour = "black") +
     labs(title = title, subtitle = "n = {frame_along}") +
     theme(plot.title = element_text(hjust = 0.5),
-          plot.subtitle = element_text(hjust = 0.5),
-          text = element_text(size = 15)) +
+      plot.subtitle = element_text(hjust = 0.5),
+      text = element_text(size = 15)) +
     ease_aes("linear")
     # guides(alpha = "none")
   
