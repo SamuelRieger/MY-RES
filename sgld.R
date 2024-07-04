@@ -8,7 +8,7 @@ p <- 2 # Length of beta
 X <- matrix(rnorm(N*p), N, p)
 y <- X%*%beta + rnorm(N, 0, 1)
 
-get_grad_log_post <- function(beta, X, y, N, n) {
+get_grad_U <- function(beta, X, y, N, n) {
   # res <- sum(dnorm(y, x%*%beta, 1, log = TRUE))
   # res <- sum(res + dnorm(beta, 0, 1, log = TRUE))
   
@@ -35,7 +35,7 @@ sgld <- function(X, y, n_iter, step_size, batch_size) {
     X_batch <- X[indicies, ]
     y_batch <- y[indicies]
     
-    grad_log_post <- get_grad_log_post(beta, X_batch, y_batch, N, n)
+    grad_log_post <- get_grad_U(beta, X_batch, y_batch, N, n)
     
     epsilon_t <- step_size / t # Decaying learning rate
     eta <- rnorm(p, 0, sqrt(epsilon_t))
