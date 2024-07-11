@@ -4,7 +4,7 @@ library(ggplot2)
 
 set.seed(1)
 beta_true <- c(1, 2)
-N <- 1000
+N <- 100
 p <- 2 # Length of beta
 X <- matrix(rnorm(N*p), N, p)
 y <- X%*%beta_true + rnorm(N, 0, 1)
